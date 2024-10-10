@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { Alert } from "react-native";
 
 export const AuthContext = createContext({
   token: "",
@@ -15,7 +16,10 @@ function AuthContentProvider({ children }) {
   }
 
   function logout() {
-    setAuthToken(null);
+    Alert.alert("Logout", "Are you sure you want to logout?", [
+      { text: "OK", onPress: () => setAuthToken(null) },
+    ]);
+    // setAuthToken(null);
   }
 
   const value = {
